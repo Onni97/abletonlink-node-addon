@@ -19,15 +19,38 @@ class MyLink : public Napi::ObjectWrap<MyLink> {
     private:
     static Napi::FunctionReference constructor;
     
-    //Napi::Boolean isEnabled(const Napi::CallbackInfo& info);
-    //void enable(const Napi::CallbackInfo& info);
-    //Napi::Boolean isStartStopSyncEnabled(const Napi::CallbackInfo& info);
-    //void enableStartStopSync(const Napi::CallbackInfo& info);
-    //Napi::Number numPeers(const Napi::CallbackInfo& info);
-    //void setNumPeersCallback(const Napi::CallbackInfo& info);
-    //void setTempoCallback(const Napi::CallbackInfo& info);
-    Napi::Value tempo(const Napi::CallbackInfo& info);
+    Napi::Value isEnabled(const Napi::CallbackInfo& info);
+    void enable(const Napi::CallbackInfo& info);
+    void disable(const Napi::CallbackInfo& info);
+    
+    Napi::Value isStartStopSyncEnabled(const Napi::CallbackInfo& info);
+    void enableStartStopSync(const Napi::CallbackInfo& info);
+    void disableStartStopSync(const Napi::CallbackInfo& info);
+    
+    Napi::Value isPlaying(const Napi::CallbackInfo& info);
+    void play(const Napi::CallbackInfo& info);
+    void stop(const Napi::CallbackInfo& info);
+    
+    Napi::Value getNumPeers(const Napi::CallbackInfo& info);
+    
+    void setNumPeersCallback(const Napi::CallbackInfo& info);
+    
+    void setTempoCallback(const Napi::CallbackInfo& info);
+    
+    void setStartStopCallback(const Napi::CallbackInfo& info);
+    
+    Napi::Value getTempo(const Napi::CallbackInfo& info);
+    Napi::Value setTempo(const Napi::CallbackInfo& info);
+    
     Napi::Value getQuantum(const Napi::CallbackInfo& info);
+    Napi::Value setQuantum(const Napi::CallbackInfo& info);
+    
+    Napi::Value getBeat(const Napi::CallbackInfo& info);
+    void requestBeat(const Napi::CallbackInfo& info);
+    void forceBeat(const Napi::CallbackInfo& info);
+    
+    Napi::Value getPhase(const Napi::CallbackInfo& info);
+    
     
     
     struct State
