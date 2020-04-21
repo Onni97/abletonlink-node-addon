@@ -1,0 +1,17 @@
+{
+    "name": "abletonlink-addon",
+    "version": "1.0.0",
+    "description": "Bind of Ableton Link on Node.js using node-addon-api",
+    "main": "index.js",
+    "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["Ableton Link", "abletonlink", "node-addon-api", "addon"],
+    "author": "",
+    "homepage": "https://github.com/owner/project#readme"
+    "license": "ISC",
+    "dependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^2.0.0"
+    }
+}
