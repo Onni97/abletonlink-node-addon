@@ -27,10 +27,6 @@ class MyLink : public Napi::ObjectWrap<MyLink> {
     void enableStartStopSync(const Napi::CallbackInfo& info);
     void disableStartStopSync(const Napi::CallbackInfo& info);
     
-    Napi::Value isPlaying(const Napi::CallbackInfo& info);
-    void play(const Napi::CallbackInfo& info);
-    void stop(const Napi::CallbackInfo& info);
-    
     Napi::Value getNumPeers(const Napi::CallbackInfo& info);
     
     void setNumPeersCallback(const Napi::CallbackInfo& info);
@@ -40,10 +36,10 @@ class MyLink : public Napi::ObjectWrap<MyLink> {
     void setStartStopCallback(const Napi::CallbackInfo& info);
     
     Napi::Value getTempo(const Napi::CallbackInfo& info);
-    Napi::Value setTempo(const Napi::CallbackInfo& info);
+    void setTempo(const Napi::CallbackInfo& info);
     
     Napi::Value getQuantum(const Napi::CallbackInfo& info);
-    Napi::Value setQuantum(const Napi::CallbackInfo& info);
+    void setQuantum(const Napi::CallbackInfo& info);
     
     Napi::Value getBeat(const Napi::CallbackInfo& info);
     void requestBeat(const Napi::CallbackInfo& info);
@@ -51,20 +47,29 @@ class MyLink : public Napi::ObjectWrap<MyLink> {
     
     Napi::Value getPhase(const Napi::CallbackInfo& info);
     
+    Napi::Value isPlaying(const Napi::CallbackInfo& info);
+    void play(const Napi::CallbackInfo& info);
+    void stop(const Napi::CallbackInfo& info);
+    
+    Napi::Value isAudioThread(const Napi::CallbackInfo& info);
+    void setAppThread(const Napi::CallbackInfo& info);
+    void setAudioThread(const Napi::CallbackInfo& info);
     
     
-    struct State
+    
+    struct Container
     {
       ableton::Link link;
 
-      State(): link(120)
+      Container(): link(120)
       {
         link.enable(true);
       }
     };
     
-    Napi::Number quantum;
-    State state;
+    bool useAppThreadFunctions;
+    double quantum;
+    Container container;
 };
 
 #endif

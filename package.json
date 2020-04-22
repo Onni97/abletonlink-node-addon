@@ -2,8 +2,12 @@
     "name": "abletonlink-addon",
     "version": "1.0.0",
     "description": "Bind of Ableton Link on Node.js using node-addon-api",
-    "keywords": ["Ableton Link", "abletonlink", "node-addon-api", "addon"],
-    
+    "keywords": [
+        "Ableton Link",
+        "abletonlink",
+        "node-addon-api",
+        "addon"
+    ],
     "author": {
         "name": "Alessandro Oniarti",
         "url": "https://github.com/Onni97"
@@ -14,14 +18,12 @@
         "url": "https://github.com/Onni97/abletonlink-node-addon"
     },
     "license": "ISC",
-    
     "dependencies": {
         "bindings": "^1.5.0",
-        "node-addon-api": "^2.0.0"
+        "node-addon-api": "^2.0.0",
+        "readline-sync": "^1.4.10"
     },
     "bugs": "https://github.com/Onni97/abletonlink-node-addon/issues",
     "main": "index.js",
-    "scripts": {
-        
-    }
+    "scripts": {}
 }

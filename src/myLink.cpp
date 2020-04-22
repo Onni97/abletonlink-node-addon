@@ -8,8 +8,32 @@ Napi::Object MyLink::Init(Napi::Env env, Napi::Object exports) {
   Napi::Function func =
       DefineClass(env,
                   "MyLink",
-                  {InstanceMethod("getTempo", &MyLink::tempo),
-                   InstanceMethod("getQuantum", &MyLink::getQuantum)});
+                  {
+                    InstanceMethod("isEnabled", &MyLink::isEnabled),
+                    InstanceMethod("enable", &MyLink::enable),
+                    InstanceMethod("disable", &MyLink::disable),
+                    InstanceMethod("isStartStopSyncEnabled", &MyLink::isStartStopSyncEnabled),
+                    InstanceMethod("enableStartStopSync", &MyLink::enableStartStopSync),
+                    InstanceMethod("disableStartStopSync", &MyLink::disableStartStopSync),
+                    InstanceMethod("isPlaying", &MyLink::isPlaying),
+                    InstanceMethod("play", &MyLink::play),
+                    InstanceMethod("stop", &MyLink::stop),
+                    InstanceMethod("getNumPeers", &MyLink::getNumPeers),
+                    InstanceMethod("setNumPeersCallback", &MyLink::setNumPeersCallback),
+                    InstanceMethod("setTempoCallback", &MyLink::setTempoCallback),
+                    InstanceMethod("setStartStopCallback", &MyLink::setStartStopCallback),
+                    InstanceMethod("getTempo", &MyLink::getTempo),
+                    InstanceMethod("setTempo", &MyLink::setTempo),
+                    InstanceMethod("getQuantum", &MyLink::getQuantum),
+                    InstanceMethod("setQuantum", &MyLink::setQuantum),
+                    InstanceMethod("getBeat", &MyLink::getBeat),
+                    InstanceMethod("requestBeat", &MyLink::requestBeat),
+                    InstanceMethod("forceBeat", &MyLink::forceBeat),
+                    InstanceMethod("getPhase", &MyLink::getPhase),
+                    InstanceMethod("isAudioThread", &MyLink::isAudioThread),
+                    InstanceMethod("setAppThread", &MyLink::setAppThread),
+                    InstanceMethod("setAudioThread", &MyLink::setAudioThread),
+                  });
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
@@ -18,6 +42,11 @@ Napi::Object MyLink::Init(Napi::Env env, Napi::Object exports) {
   return exports;
 }
 
+
+
+
+
+//CONSTRUCTOR
 MyLink::MyLink(const Napi::CallbackInfo& info): Napi::ObjectWrap<MyLink>(info) {
     Napi::Env env = info.Env();
     Napi::HandleScope scope(env);
@@ -27,85 +56,293 @@ MyLink::MyLink(const Napi::CallbackInfo& info): Napi::ObjectWrap<MyLink>(info) {
         return;
     }
     
-    Napi::Number value = info[0].As<Napi::Number>();
-    //set tempo
-}
-
-
-
-
-
-
-
-
-
-
-
+    //if peer = 0 set tempo
+    Napi::Number newTempo = info[0].As<Napi::Number>();
     
-Napi::Value isEnabled(const Napi::CallbackInfo& info) {
-    bool = 
+    //set defaults
+    this->quantum = 4;
+    this->useAppThreadFunctions = true;
 }
 
-void enable(const Napi::CallbackInfo& info);
-void disable(const Napi::CallbackInfo& info);
-
-Napi::Value isStartStopSyncEnabled(const Napi::CallbackInfo& info);
-void enableStartStopSync(const Napi::CallbackInfo& info);
-void disableStartStopSync(const Napi::CallbackInfo& info);
-
-Napi::Value isPlaying(const Napi::CallbackInfo& info);
-void play(const Napi::CallbackInfo& info);
-void stop(const Napi::CallbackInfo& info);
-
-Napi::Value getNumPeers(const Napi::CallbackInfo& info);
-
-void setNumPeersCallback(const Napi::CallbackInfo& info);
-
-void setTempoCallback(const Napi::CallbackInfo& info);
-
-void setStartStopCallback(const Napi::CallbackInfo& info);
-
-Napi::Value getTempo(const Napi::CallbackInfo& info);
-Napi::Value setTempo(const Napi::CallbackInfo& info);
-
-Napi::Value getQuantum(const Napi::CallbackInfo& info);
-Napi::Value setQuantum(const Napi::CallbackInfo& info);
-
-Napi::Value getBeat(const Napi::CallbackInfo& info);
-void requestBeat(const Napi::CallbackInfo& info);
-void forceBeat(const Napi::CallbackInfo& info);
-
-Napi::Value getPhase(const Napi::CallbackInfo& info);
 
 
 
 
 
+//METHODS
+
+//
+Napi::Value MyLink::isEnabled(const Napi::CallbackInfo& info) {
+    bool res = container.link.isEnabled();
+    return Napi::Boolean::New(info.Env(), res);
+}
+
+void MyLink::enable(const Napi::CallbackInfo& info) {
+    container.link.enable(true);
+}
+
+void MyLink::disable(const Napi::CallbackInfo& info) {
+    container.link.enable(false);
+}
 
 
 
 
 
+Napi::Value MyLink::isStartStopSyncEnabled(const Napi::CallbackInfo& info) {
+    bool res = container.link.isStartStopSyncEnabled();
+    return Napi::Boolean::New(info.Env(), res);
+}
+
+void MyLink::enableStartStopSync(const Napi::CallbackInfo& info) {
+    container.link.enableStartStopSync(true);
+}
+
+void MyLink::disableStartStopSync(const Napi::CallbackInfo& info) {
+    container.link.enableStartStopSync(false);
+}
 
 
 
 
 
+Napi::Value MyLink::getNumPeers(const Napi::CallbackInfo& info) {
+    int res = container.link.numPeers();
+    return Napi::Number::New(info.Env(), res);
+}
 
+
+
+
+//TODO
+void MyLink::setNumPeersCallback(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+    Napi::Function cb = info[0].As<Napi::Function>();
+    
+    cb.Call(env.Global(), {this->getNumPeers(info)});
+}
+
+void MyLink::setTempoCallback(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+    Napi::Function cb = info[0].As<Napi::Function>();
+    cb.Call(env.Global(), {this->getTempo(info)});
+}
+
+void MyLink::setStartStopCallback(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+    Napi::Function cb = info[0].As<Napi::Function>();
+    cb.Call(env.Global(), {});
+    
+    //cb.Call(env.Global(), {this->isPlaying()});
+}
 
 
 
 
 
 Napi::Value MyLink::getTempo(const Napi::CallbackInfo& info) {
-    double res = state.link.captureAppSessionState().tempo();
+    double tempo;
+    if(this->useAppThreadFunctions) {
+        tempo = container.link.captureAppSessionState().tempo();
+    } else {
+        tempo = container.link.captureAudioSessionState().tempo();
+    }
+    return Napi::Number::New(info.Env(), tempo);
+}
+
+void MyLink::setTempo(const Napi::CallbackInfo& info) {
+    //throw exception in case of wrong parameter
+    Napi::Env env = info.Env();
+    if (info.Length() < 1) {
+        Napi::TypeError::New(env, "Wrong number of arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    if (!info[0].IsNumber()) {
+        Napi::TypeError::New(env, "Wrong arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    double newTempo = info[0].As<Napi::Number>().DoubleValue();
     
-    return Napi::Number::New(info.Env(), res);
+    //set new tempo
+    if(this->useAppThreadFunctions) {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAppSessionState();
+        newState.setTempo(newTempo, time);
+        container.link.commitAppSessionState(newState);
+    } else {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAudioSessionState();
+        newState.setTempo(newTempo, time);
+        container.link.commitAudioSessionState(newState);
+    }
 }
 
 
-Napi::Value MyLink::getQuantum(const Napi::CallbackInfo& info) {
-    double res = this->quantum;
 
-    return Napi::Number::New(info.Env(), res);
+
+
+Napi::Value MyLink::getBeat(const Napi::CallbackInfo& info) {
+    double beat;
+    if(this->useAppThreadFunctions) {
+        std::chrono::microseconds time = container.link.clock().micros();
+        beat = container.link.captureAppSessionState().beatAtTime(time, this->quantum);
+    } else {
+        std::chrono::microseconds time = container.link.clock().micros();
+        beat = container.link.captureAudioSessionState().beatAtTime(time, this->quantum);
+    }
+    return Napi::Number::New(info.Env(), beat);
+}
+
+void MyLink::requestBeat(const Napi::CallbackInfo& info) {
+    //throw exception in case of wrong parameter
+    Napi::Env env = info.Env();
+    if (info.Length() < 1) {
+        Napi::TypeError::New(env, "Wrong number of arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    if (!info[0].IsNumber()) {
+        Napi::TypeError::New(env, "Wrong arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    double newBeat = info[0].As<Napi::Number>().DoubleValue();
+    
+    //set new beat
+    if(this->useAppThreadFunctions) {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAppSessionState();
+        newState.requestBeatAtTime(newBeat, time, this->quantum);
+        container.link.commitAppSessionState(newState);
+    } else {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAudioSessionState();
+        newState.requestBeatAtTime(newBeat, time, this->quantum);
+        container.link.commitAudioSessionState(newState);
+    }
+}
+
+void MyLink::forceBeat(const Napi::CallbackInfo& info) {
+    //throw exception in case of wrong parameter
+    Napi::Env env = info.Env();
+    if (info.Length() < 1) {
+        Napi::TypeError::New(env, "Wrong number of arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    if (!info[0].IsNumber()) {
+        Napi::TypeError::New(env, "Wrong arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    double newBeat = info[0].As<Napi::Number>().DoubleValue();
+    
+    //force new beat
+    if(this->useAppThreadFunctions) {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAppSessionState();
+        newState.forceBeatAtTime(newBeat, time, this->quantum);
+        container.link.commitAppSessionState(newState);
+    } else {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAudioSessionState();
+        newState.forceBeatAtTime(newBeat, time, this->quantum);
+        container.link.commitAudioSessionState(newState);
+    }
+}
+
+
+
+
+
+Napi::Value MyLink::getPhase(const Napi::CallbackInfo& info) {
+    double phase;
+    if(this->useAppThreadFunctions) {
+        std::chrono::microseconds time = container.link.clock().micros();
+        phase = container.link.captureAppSessionState().phaseAtTime(time, this->quantum);
+    } else {
+        std::chrono::microseconds time = container.link.clock().micros();
+        phase = container.link.captureAudioSessionState().phaseAtTime(time, this->quantum);
+    }
+    return Napi::Number::New(info.Env(), phase);
+}
+
+
+
+
+
+Napi::Value MyLink::isPlaying(const Napi::CallbackInfo& info) {
+    bool isPlaying;
+    if(this->useAppThreadFunctions) {
+        isPlaying = container.link.captureAppSessionState().isPlaying();
+    } else {
+        isPlaying = container.link.captureAudioSessionState().isPlaying();
+    }
+    return Napi::Boolean::New(info.Env(), isPlaying);
+}
+
+void MyLink::play(const Napi::CallbackInfo& info) {
+    if(this->useAppThreadFunctions) {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAppSessionState();
+        newState.setIsPlaying(true, time);
+        container.link.commitAppSessionState(newState);
+    } else {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAudioSessionState();
+        newState.setIsPlaying(true, time);
+        container.link.commitAudioSessionState(newState);
+    }
+}
+
+void MyLink::stop(const Napi::CallbackInfo& info) {
+    if(this->useAppThreadFunctions) {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAppSessionState();
+        newState.setIsPlaying(false, time);
+        container.link.commitAppSessionState(newState);
+    } else {
+        std::chrono::microseconds time = container.link.clock().micros();
+        ableton::Link::SessionState newState = container.link.captureAudioSessionState();
+        newState.setIsPlaying(false, time);
+        container.link.commitAudioSessionState(newState);
+    }
+}
+
+
+
+
+
+Napi::Value MyLink::isAudioThread(const Napi::CallbackInfo& info) {
+    return Napi::Boolean::New(info.Env(), !(this->useAppThreadFunctions));
+}
+
+void MyLink::setAppThread(const Napi::CallbackInfo& info) {
+    this->useAppThreadFunctions = true;
+}
+
+void MyLink::setAudioThread(const Napi::CallbackInfo& info) {
+    this->useAppThreadFunctions = false;
+}
+
+
+
+
+
+Napi::Value MyLink::getQuantum(const Napi::CallbackInfo& info) {
+    return Napi::Number::New(info.Env(), this->quantum);
+}
+
+void MyLink::setQuantum(const Napi::CallbackInfo& info) {
+    //throw exception in case of wrong parameter
+    Napi::Env env = info.Env();
+    
+    if (info.Length() < 1) {
+        Napi::TypeError::New(env, "Wrong number of arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    if (!info[0].IsNumber()) {
+        Napi::TypeError::New(env, "Wrong arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    
+    //set new quantum
+    Napi::Number newQuantum = info[0].As<Napi::Number>();
+    this->quantum = newQuantum.DoubleValue();
 }
