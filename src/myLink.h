@@ -66,7 +66,7 @@ class MyLink : public Napi::ObjectWrap<MyLink> {
     };
     
     bool useAppThreadFunctions;
-    double quantum;
+    int32_t quantum;
     Container container;
     Napi::ThreadSafeFunction numPeersCallback;
     Napi::ThreadSafeFunction tempoCallback;

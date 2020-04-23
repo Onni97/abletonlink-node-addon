@@ -51,14 +51,6 @@ MyLink::MyLink(const Napi::CallbackInfo& info): Napi::ObjectWrap<MyLink>(info) {
     Napi::Env env = info.Env();
     Napi::HandleScope scope(env);
     
-    if (info.Length() <= 0 || !info[0].IsNumber()) {
-        Napi::TypeError::New(env, "Number expected").ThrowAsJavaScriptException();
-        return;
-    }
-    
-    //if peer = 0 set tempo
-    Napi::Number newTempo = info[0].As<Napi::Number>();
-    
     //set defaults
     this->quantum = 4;
     this->useAppThreadFunctions = true;
@@ -391,5 +383,5 @@ void MyLink::setQuantum(const Napi::CallbackInfo& info) {
     
     //set new quantum
     Napi::Number newQuantum = info[0].As<Napi::Number>();
-    this->quantum = newQuantum.DoubleValue();
+    this->quantum = newQuantum.Int32Value();
 }

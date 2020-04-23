@@ -109,4 +109,3 @@ while(true) {
 
 
 
-//aggiungo delle funzioni in js per rimuovere le callback
