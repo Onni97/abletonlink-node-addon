@@ -30,9 +30,7 @@ class MyLink : public Napi::ObjectWrap<MyLink> {
     Napi::Value getNumPeers(const Napi::CallbackInfo& info);
     
     void setNumPeersCallback(const Napi::CallbackInfo& info);
-    
     void setTempoCallback(const Napi::CallbackInfo& info);
-    
     void setStartStopCallback(const Napi::CallbackInfo& info);
     
     Napi::Value getTempo(const Napi::CallbackInfo& info);
@@ -70,6 +68,9 @@ class MyLink : public Napi::ObjectWrap<MyLink> {
     bool useAppThreadFunctions;
     double quantum;
     Container container;
+    Napi::ThreadSafeFunction numPeersCallback;
+    Napi::ThreadSafeFunction tempoCallback;
+    Napi::ThreadSafeFunction startStopCallback;
 };
 
 #endif

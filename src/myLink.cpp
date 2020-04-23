@@ -68,7 +68,6 @@ MyLink::MyLink(const Napi::CallbackInfo& info): Napi::ObjectWrap<MyLink>(info) {
 
 
 
-
 //METHODS
 
 //
@@ -114,26 +113,74 @@ Napi::Value MyLink::getNumPeers(const Napi::CallbackInfo& info) {
 
 
 
-//TODO
+
 void MyLink::setNumPeersCallback(const Napi::CallbackInfo& info) {
+    //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
+    if (info.Length() < 1) {
+        Napi::TypeError::New(env, "Wrong number of arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    if (!info[0].IsFunction()) {
+        Napi::TypeError::New(env, "Wrong arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    
     Napi::Function cb = info[0].As<Napi::Function>();
     
-    cb.Call(env.Global(), {this->getNumPeers(info)});
+    numPeersCallback = Napi::ThreadSafeFunction::New(info.Env(), cb, "numPeersCallback", 0, 1, []( Napi::Env ) {});
+    container.link.setNumPeersCallback([this](double numPeers) {
+        napi_status status = numPeersCallback.BlockingCall([numPeers](Napi::Env env, Napi::Function jsCallback) {
+            Napi::HandleScope scope(env);
+            jsCallback.Call({ Napi::Number::New(env, numPeers) });
+        });
+    });
 }
 
 void MyLink::setTempoCallback(const Napi::CallbackInfo& info) {
+    //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
+    if (info.Length() < 1) {
+        Napi::TypeError::New(env, "Wrong number of arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    if (!info[0].IsFunction()) {
+        Napi::TypeError::New(env, "Wrong arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    
     Napi::Function cb = info[0].As<Napi::Function>();
-    cb.Call(env.Global(), {this->getTempo(info)});
+    
+    tempoCallback = Napi::ThreadSafeFunction::New(info.Env(), cb, "tempoCallback", 0, 1, []( Napi::Env ) {});
+    container.link.setTempoCallback([this](double tempo) {
+        napi_status status = tempoCallback.BlockingCall([tempo](Napi::Env env, Napi::Function jsCallback) {
+            Napi::HandleScope scope(env);
+            jsCallback.Call({ Napi::Number::New(env, tempo) });
+        });
+    });
 }
 
 void MyLink::setStartStopCallback(const Napi::CallbackInfo& info) {
+    //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
-    Napi::Function cb = info[0].As<Napi::Function>();
-    cb.Call(env.Global(), {});
+    if (info.Length() < 1) {
+        Napi::TypeError::New(env, "Wrong number of arguments").ThrowAsJavaScriptException();
+        return;
+    }
+    if (!info[0].IsFunction()) {
+        Napi::TypeError::New(env, "Wrong arguments").ThrowAsJavaScriptException();
+        return;
+    }
     
-    //cb.Call(env.Global(), {this->isPlaying()});
+    Napi::Function cb = info[0].As<Napi::Function>();
+    
+    startStopCallback = Napi::ThreadSafeFunction::New(info.Env(), cb, "startStopCallback", 0, 1, []( Napi::Env ) {});
+    container.link.setStartStopCallback([this](bool isPlaying) {
+        napi_status status = startStopCallback.BlockingCall([isPlaying](Napi::Env env, Napi::Function jsCallback) {
+            Napi::HandleScope scope(env);
+            jsCallback.Call({ Napi::Boolean::New(env, isPlaying) });
+        });
+    });
 }
 
 
