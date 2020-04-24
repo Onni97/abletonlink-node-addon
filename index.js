@@ -88,10 +88,10 @@ class AbletonLink{
     
     /**
      * Sets the callback to be executed when the number of peer changes
-     * @param {function} numPeerCallback The callback to be executed, takes the new number of peers as Number parameter
+     * @param {function} numPeerCallback The callback to be executed, takes the new number of peers as number parameter
      */
     setNumPeersCallback(numPeerCallback) {
-        if(typeof(numPeerCallback) !== Function) {
+        if(typeof(numPeerCallback) !== "function") {
             throw "Parameter must be a function!";
         }
         this._link.setNumPeersCallback(numPeerCallback);
@@ -110,10 +110,10 @@ class AbletonLink{
     
     /**
      * Sets the callback to be executed when the tempo changes
-     * @param {function} tempoCallback The callback to be executed, takes the new tempo as Number parameter
+     * @param {function} tempoCallback The callback to be executed, takes the new tempo as number parameter
      */
     setTempoCallback(tempoCallback) {
-        if(typeof(tempoCallback) !== Function) {
+        if(typeof(tempoCallback) !== "function") {
             throw "Parameter must be a function!";
         }
         this._link.setTempoCallback(tempoCallback);
@@ -135,7 +135,7 @@ class AbletonLink{
      * @param {function} startStopCallback The callback to be executed, takes the new start/stop state as boolean paramenter
      */
     setStartStopCallback(startStopCallback) {
-        if(typeof(startStopCallback) !== Function) {
+        if(typeof(startStopCallback) !== "function") {
             throw "Parameter must be a function!";
         }
         this._link.setStartStopCallback(startStopCallback);
@@ -158,7 +158,7 @@ class AbletonLink{
      * @returns {number} The tempo
      */
     getTempo(cleanResult = false) {
-        if(typeof(cleanResult) !== boolean) {
+        if(typeof(cleanResult) !== "boolean") {
             throw "Parameter must be a boolean!";
         }
         if(cleanResult) {
@@ -175,8 +175,8 @@ class AbletonLink{
      * @param {number} tempo The new tempo
      */
     setTempo(tempo) {
-        if(typeof(tempo) !== Number) {
-            throw "Parameter must be a Number!";
+        if(typeof(tempo) !== "number") {
+            throw "Parameter must be a number!";
         }
         this._link.setTempo(tempo);
     }
@@ -198,8 +198,8 @@ class AbletonLink{
      * @param {number} quantum The new quantum
      */
     setQuantum(quantum) {
-        if(typeof(quantum) !== Number) {
-            throw "Parameter must be a Number!";
+        if(typeof(quantum) !== "number") {
+            throw "Parameter must be a number!";
         }
         this._link.setQuantum(Math.round(quantum));
     }
@@ -212,7 +212,7 @@ class AbletonLink{
      * @returns {number} The beat
      */
     getBeat(cleanResult = false) {
-        if(typeof(cleanResult) !== boolean) {
+        if(typeof(cleanResult) !== "boolean") {
             throw "Parameter must be a boolean!";
         }
         if(cleanResult) {
@@ -229,8 +229,8 @@ class AbletonLink{
      * @param {number} beat The new beat
      */
     requestBeat(beat) {
-        if(typeof(beat) !== Number) {
-            throw "Parameter must be a Number!";
+        if(typeof(beat) !== "number") {
+            throw "Parameter must be a number!";
         }
         this._link.requestBeat(beat);
     }
@@ -242,8 +242,8 @@ class AbletonLink{
      * @param {number} beat The new beat
      */
     forceBeat(beat) {
-        if(typeof(beat) !== Number) {
-            throw "Parameter must be a Number!";
+        if(typeof(beat) !== "number") {
+            throw "Parameter must be a number!";
         }
         this._link.forceBeat(beat);
     }
@@ -256,7 +256,7 @@ class AbletonLink{
      * @returns {number} The phase
      */
     getPhase(cleanResult = false) {
-        if(typeof(cleanResult) !== boolean) {
+        if(typeof(cleanResult) !== "boolean") {
             throw "Parameter must be a boolean!";
         }
         if(cleanResult) {
@@ -323,4 +323,4 @@ class AbletonLink{
     }
 }
 
-module.export = AbletonLink;
+module.exports = AbletonLink;

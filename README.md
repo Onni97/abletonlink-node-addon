@@ -1,5 +1,7 @@
 # Ableton Link node addon
-Ableton Link native addon for Node
+Ableton Link native addon for Node.
+
+Realized using node-addon-api (supported by Node) and always the latst version of Ableton Link
 
 
 ## Tested Env
@@ -15,13 +17,13 @@ Ableton Link native addon for Node
 To run this project you need the **G++** compiler (4.8 or above)  and **Python** (v2.7, v3.5, v3.6, v3.7, or v3.8)
 
 ### Linux
-Run this command to install requisites
+Run this command to install requisites:
 ```
 sudo apt-get install g++ python
 ```
 
 ### Windows
-You need the windows-buil-tools that containt boot G++ and Python
+You need the windows-buil-tools that containt boot G++ and Python, to install run:
 ```
 npm install windows-buil-tools
 ```
@@ -33,9 +35,9 @@ npm install windows-buil-tools
 * [bindings](https://github.com/TooTallNate/node-bindings)
 
 
-## Install (not disponible yet on npm)
+## Install
 ###GitHub
-Run the script
+Run the script:
 ```
 git clone --recursive https://github.com/Onni97/abletonlink-node-addon
 cd abletonlink-node-addon
@@ -43,15 +45,20 @@ npm install
 ```
 **Important:** --recursive is required to download the submodules
 
-
 ###npm
-The package is also avaiable in npm, so you can simply execute
+The package is also avaiable in npm, so you can simply execute:
 ```
-npm install abletonlink-node-addon
+npm install abletonlink-addon
 ```
 or add the dependency to your ```package.json```
 
 The ```install``` script will install the dependencies and also compile the AbletonLink source code for the current enviroment
+
+###Example
+To run the included example you need [readline-sync](https://github.com/anseki/readline-sync). Install it with:
+```
+npm install readline-sync
+```
 
 
 ## Usage
@@ -151,7 +158,7 @@ Says the number of peers connected (doesn't count who calls the method)
 
 thread-safe :heavy_check_mark: | realtime-safe :heavy_check_mark:
 ```js
-getNumPeers() : Number
+getNumPeers() : number
 ```
 ```@returns``` The number of peers
 
@@ -162,9 +169,9 @@ Sets the callback to be executed when the number of peer changes
 
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
-setNumPeersCallback(numPeersCallback)
+setNumPeersCallback(numPeersCallback : function)
 ```
-```@numPeersCallback``` The callback to be executed, takes the new number of peers as Number parameter
+```@numPeersCallback``` The callback to be executed, takes the new number of peers as number parameter
 
 
 **- removeNumPeersCallback**
@@ -183,9 +190,9 @@ Sets the callback to be executed when the tempo changes
 
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
-setTempoCallback(tempoCallback)
+setTempoCallback(tempoCallback : function)
 ```
-```@tempoCallback``` The callback to be executed, takes the new tempo as Number parameter
+```@tempoCallback``` The callback to be executed, takes the new tempo as number parameter
 
 
 **- removeTempoCallback**
@@ -204,7 +211,7 @@ Sets the callback to be executed when the start/stop sync changes
 
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
-setStartStopCallback(startStopCallback)
+setStartStopCallback(startStopCallback : function)
 ```
 
 ```startStopCallback``` The callback to be executed, takes the new start/stop state as boolean paramenter
@@ -234,7 +241,7 @@ an application thread concurrently is not advised and will potentially lead to u
 
 Returns the current tempo(bpm)
 ```js
-getTempo(cleanResult = false) : Number
+getTempo(cleanResult = false) : number
 ```
 ```@cleanResult``` If the data must be rounded before return (false by default)
 
@@ -254,7 +261,7 @@ setTempo(tempo)
 
 Returns the quantum
 ```js
-getQuantum() : Number
+getQuantum() : number
 ```
 ```@return``` The quantum
 
@@ -263,7 +270,7 @@ getQuantum() : Number
 
 Sets the quantum
 ```js
-setQuantum(quantum)
+setQuantum(quantum: number)
 ```
 ```quantum``` The new quantum
 
@@ -272,7 +279,7 @@ setQuantum(quantum)
 
 Returns the current beat
 ```js
-getBeat(cleanResult = false) : Number
+getBeat(cleanResult = false) : number
 ```
 ```@cleanResult``` If the data must be rounded before return (false by default)
 
@@ -283,7 +290,7 @@ getBeat(cleanResult = false) : Number
 
 Set the new beat in sync with the session
 ```js
-requestBeat(beat: Number)
+requestBeat(beat: number)
 ```
 ```@beat``` The new beat
 
@@ -292,7 +299,7 @@ requestBeat(beat: Number)
 
 Set the new beat instantly, not in sync with the session
 ```js
-forceBeat(beat: Number)
+forceBeat(beat: number)
 ```
 ```@beat``` The new beat
 
@@ -301,7 +308,7 @@ forceBeat(beat: Number)
 
 Returns the phase
 ```js
-getPhase(cleanResult = false) : Number
+getPhase(cleanResult = false) : number
 ```
 ```@cleanResult``` If the data must be rounded before return (false by default)
 

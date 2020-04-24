@@ -20,12 +20,13 @@
     "license": "MIT",
     "dependencies": {
         "bindings": "^1.5.0",
-        "node-addon-api": "^2.0.0"
+        "node-addon-api": "^2.0.0",
+        "readline-sync": "^1.4.10"
     },
     "bugs": "https://github.com/Onni97/abletonlink-node-addon/issues",
     "main": "index.js",
     "scripts": {
-        "install": "run build",
+        "install": "npm run build",
         "build": "node-gyp configure && node-gyp rebuild"
     }
 }
