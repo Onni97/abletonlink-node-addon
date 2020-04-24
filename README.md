@@ -74,131 +74,142 @@ the thread that performs audio IO.
 
 **- isEnabled**
 
+Says if Link syncronization is enabled
+
 thread-safe :heavy_check_mark: | realtime-safe :heavy_check_mark: 
 ```js
 isEnabled() : boolean
 ```
-Says if Link syncronization is enabled
-
 ```@returns``` true if Link syncronization is enabled, false otherwise
 
 
 **- enable**
 
+Enables Link syncronization
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 enable()
 ```
-Enables Link syncronization
 
 
 **- disable**
+
+Disables Link syncronization
 
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 disable()
 ```
-Disables Link syncronization
 
 
 **- isStartStopSyncEnabled**
+
+Says if start/stop sync is enabled
 
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 isStartStopSyncEnabled() : boolean
 ```
-Says if start/stop sync is enabled
-
 ```@returns``` true if start/stop sync is enabled, false otherwise
 
 
 **- enableStartStopSync**
 
+Enables start/stop sync
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 enableStartStopSync()
 ```
-Enables start/stop sync
 
 
 **- disableStartStopSync**
+
+Disables start/stop sync
 
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 disableStartStopSync()
 ```
-Disables start/stop sync
 
 
 **- getNumPeers**
+
+Says the number of peers connected (doesn't count who calls the method)
 
 thread-safe :heavy_check_mark: | realtime-safe :heavy_check_mark:
 ```js
 getNumPeers() : Number
 ```
-Says the number of peers connected (doesn't count who calls the method)
 
 ```@returns``` The number of peers
 
 
 **- setNumPeersCallback**
 
+Sets the callback to be executed when the number of peer changes
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 setNumPeersCallback(numPeersCallback)
 ```
-Sets the callback to be executed when the number of peer changes
 
 ```@numPeersCallback``` The callback to be executed, takes the new number of peers as Number parameter
 
 
 **- removeNumPeersCallback**
 
+Removes the callback to be executed when the number of peer changes
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 removeNumPeersCallback()
 ```
-Removes the callback to be executed when the number of peer changes
 
 
 **- setTempoCallback**
+
+Sets the callback to be executed when the tempo changes
 
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 setTempoCallback(tempoCallback)
 ```
-Sets the callback to be executed when the tempo changes
 
 ```@tempoCallback``` The callback to be executed, takes the new tempo as Number parameter
 
 
 **- removeTempoCallback**
 
+Removes the callback to be executed when the tempo changes
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 removeTempoCallback()
 ```
-Removes the callback to be executed when the tempo changes
 
 
 **- setStartStopCallback**
+
+Sets the callback to be executed when the start/stop sync changes
 
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 setStartStopCallback(startStopCallback)
 ```
-Sets the callback to be executed when the start/stop sync changes
 
 ```startStopCallback``` The callback to be executed, takes the new start/stop state as boolean paramenter
 
 
 **- removeStartStopCallback**
 
+Removes the callback to be executed when the start/stop sync changes
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 removeStartStopCallback()
 ```
-Removes the callback to be executed when the start/stop sync changes
 
 
 ### Methods 2
