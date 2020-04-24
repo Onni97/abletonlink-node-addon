@@ -3,11 +3,11 @@ Ableton Link native addon for Node
 
 
 ## Tested Env
-#### OS TESTED: 
+### OS tested: 
 * Ubuntu 18.04 running on WSL on Windows 10
 * Windows 10
 
-#### NODE VERSIONS TESTED:
+### Node versions tested:
 * 13.13.0
 
 
@@ -34,6 +34,17 @@ npm install windows-buil-tools
 
 
 ## Install (not disponible yet on npm)
+###GitHub
+Run the script
+```
+git clone --recursive https://github.com/Onni97/abletonlink-node-addon
+cd abletonlink-node-addon
+npm install
+```
+**Important:** --recursive is required to download the submodules
+
+
+###npm
 The package is also avaiable in npm, so you can simply execute
 ```
 npm install abletonlink-node-addon
