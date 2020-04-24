@@ -3,24 +3,24 @@ Ableton Link native addon for Node
 
 
 ## Tested Env
-##### OS TESTED: 
+#### OS TESTED: 
 * Ubuntu 18.04 running on WSL on Windows 10
 * Windows 10
 
-##### NODE VERSIONS TESTED:
+#### NODE VERSIONS TESTED:
 * 13.13.0
 
 
 ## Requisites
 To run this project you need the **G++** compiler (4.8 or above)  and **Python** (v2.7, v3.5, v3.6, v3.7, or v3.8)
 
-##### Linux
+### Linux
 Run this command to install requisites
 ```
 sudo apt-get install g++ python
 ```
 
-##### Windows
+### Windows
 You need the windows-buil-tools that containt boot G++ and Python
 ```
 npm install windows-buil-tools
