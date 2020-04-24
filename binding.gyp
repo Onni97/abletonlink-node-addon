@@ -9,8 +9,8 @@
             "./src/index.cpp"
         ],
         "include_dirs": [
-            './libs/link/include',
-            './libs/link/modules/asio-standalone/asio/include',
+            './link/include',
+            './link/modules/asio-standalone/asio/include',
             "<!@(node -p \"require('node-addon-api').include\")"
         ],
         'defines': [ 'NAPI_DISABLE_CPP_EXCEPTIONS' ],
