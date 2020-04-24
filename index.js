@@ -22,7 +22,7 @@ class AbletonLink{
     
     /**
      * Says if Link syncronization is enabled
-     * @returns {boolean} True if Link syncronization is enabled, false otherwise
+     * @returns {boolean} true if Link syncronization is enabled, false otherwise
      */
     isEnabled() {
         return this._link.isEnabled();
@@ -50,7 +50,7 @@ class AbletonLink{
     
     /**
      * Says if start/stop sync is enabled
-     * @returns {boolean}  True if start/stop sync is enabled, false otherwise
+     * @returns {boolean}  true if start/stop sync is enabled, false otherwise
      */
     isStartStopSyncEnabled() {
         return this._link.isStartStopSyncEnabled();
@@ -77,8 +77,8 @@ class AbletonLink{
     
     
     /**
-     * Returns the number of other peers connected (doesn't count the caller)
-     * @returns {number} number of peers
+     * Says the number of other peers connected (doesn't count the caller)
+     * @returns {number} The number of peers
      */
     getNumPeers() {
         return this._link.getNumPeers();
@@ -88,10 +88,10 @@ class AbletonLink{
     
     /**
      * Sets the callback to be executed when the number of peer changes
-     * @param {function} numPeerCallback the callback to be executed
+     * @param {function} numPeerCallback The callback to be executed, takes the new number of peers as Number parameter
      */
     setNumPeersCallback(numPeerCallback) {
-        if(numPeerCallback != Function) {
+        if(typeof(numPeerCallback) !== Function) {
             throw "Parameter must be a function!";
         }
         this._link.setNumPeersCallback(numPeerCallback);
@@ -110,10 +110,10 @@ class AbletonLink{
     
     /**
      * Sets the callback to be executed when the tempo changes
-     * @param {function} tempoCallback the callback to be executed
+     * @param {function} tempoCallback The callback to be executed, takes the new tempo as Number parameter
      */
     setTempoCallback(tempoCallback) {
-        if(tempoCallback != Function) {
+        if(typeof(tempoCallback) !== Function) {
             throw "Parameter must be a function!";
         }
         this._link.setTempoCallback(tempoCallback);
@@ -122,7 +122,7 @@ class AbletonLink{
     
     
     /**
-     * Sets the callback to be executed when the tempo changes
+     * Removes the callback to be executed when the tempo changes
      */
     removeTempoCallback() {
         this._link.setTempoCallback(function() {});
@@ -132,10 +132,10 @@ class AbletonLink{
     
     /**
      * Sets the callback to be executed when the start/stop sync changes
-     * @param {function} startStopCallback the callback to be executed
+     * @param {function} startStopCallback The callback to be executed, takes the new start/stop state as boolean paramenter
      */
     setStartStopCallback(startStopCallback) {
-        if(numPeerCallback != Function) {
+        if(typeof(startStopCallback) !== Function) {
             throw "Parameter must be a function!";
         }
         this._link.setStartStopCallback(startStopCallback);
@@ -146,7 +146,7 @@ class AbletonLink{
     /**
      * Removes the callback to be executed when the start/stop sync changes
      */
-    removeStartStopCallback(startStopCallback) {
+    removeStartStopCallback() {
         this._link.setStartStopCallback(function() {});
     }
     
@@ -158,7 +158,7 @@ class AbletonLink{
      * @returns {number} The tempo
      */
     getTempo(cleanResult = false) {
-        if(cleanResult != boolean) {
+        if(typeof(cleanResult) !== boolean) {
             throw "Parameter must be a boolean!";
         }
         if(cleanResult) {
@@ -172,10 +172,10 @@ class AbletonLink{
     
     /**
      * Sets the new tempo for the session
-     * @param {number} The new tempo
+     * @param {number} tempo The new tempo
      */
     setTempo(tempo) {
-        if(tempo != Number) {
+        if(typeof(tempo) !== Number) {
             throw "Parameter must be a Number!";
         }
         this._link.setTempo(tempo);
@@ -198,7 +198,7 @@ class AbletonLink{
      * @param {number} quantum The new quantum
      */
     setQuantum(quantum) {
-        if(tempo != quantum) {
+        if(typeof(quantum) !== Number) {
             throw "Parameter must be a Number!";
         }
         this._link.setQuantum(Math.round(quantum));
@@ -212,7 +212,7 @@ class AbletonLink{
      * @returns {number} The beat
      */
     getBeat(cleanResult = false) {
-        if(cleanResult != boolean) {
+        if(typeof(cleanResult) !== boolean) {
             throw "Parameter must be a boolean!";
         }
         if(cleanResult) {
@@ -226,10 +226,10 @@ class AbletonLink{
     
     /**
      * Set the new beat in sync with the session
-     * @param {number} The new beat
+     * @param {number} beat The new beat
      */
     requestBeat(beat) {
-        if(beat != Number) {
+        if(typeof(beat) !== Number) {
             throw "Parameter must be a Number!";
         }
         this._link.requestBeat(beat);
@@ -239,10 +239,10 @@ class AbletonLink{
     
     /**
      * Set the new beat instantly, not in sync with the session
-     * @param {number} The new beat
+     * @param {number} beat The new beat
      */
     forceBeat(beat) {
-        if(beat != Number) {
+        if(typeof(beat) !== Number) {
             throw "Parameter must be a Number!";
         }
         this._link.forceBeat(beat);
@@ -256,7 +256,7 @@ class AbletonLink{
      * @returns {number} The phase
      */
     getPhase(cleanResult = false) {
-        if(cleanResult != boolean) {
+        if(typeof(cleanResult) !== boolean) {
             throw "Parameter must be a boolean!";
         }
         if(cleanResult) {
@@ -265,7 +265,6 @@ class AbletonLink{
             return this._link.getPhase();
         }
     }
-    
     
     
     
@@ -298,7 +297,7 @@ class AbletonLink{
     
     
     /**
-     * Say if this is in audio thread mode
+     * Says if this is in audio thread mode
      * @returns {boolean} True if this is in audio thread mode, false if is in app thread mode
      */
     isAudioThread() {
@@ -308,7 +307,7 @@ class AbletonLink{
     
     
     /**
-     * Set App thread mode
+     * Sets App thread mode
      */
     setAppThread() {
         this._link.setAppThread();
@@ -317,7 +316,7 @@ class AbletonLink{
     
     
     /**
-     * Set Audio thread mode
+     * Sets Audio thread mode
      */
     setAudioThread() {
         this._link.setAudioThread();

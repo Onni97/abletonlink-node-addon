@@ -1,7 +1,7 @@
 {
     "name": "abletonlink-addon",
     "version": "0.1.0",
-    "description": "Bind of Ableton Link on Node.js using node-addon-api",
+    "description": "Ableton Link native addon for Node",
     "keywords": [
         "Ableton Link",
         "abletonlink",
@@ -20,9 +20,12 @@
     "license": "ISC",
     "dependencies": {
         "bindings": "^1.5.0",
-        "node-addon-api": "^2.0.0",
+        "node-addon-api": "^2.0.0"
     },
     "bugs": "https://github.com/Onni97/abletonlink-node-addon/issues",
     "main": "index.js",
-    "scripts": {}
+    "scripts": {
+        "install": "run build",
+        "build": "node-gyp configure && node-gyp rebuild"
+    }
 }
