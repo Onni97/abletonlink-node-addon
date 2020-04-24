@@ -63,7 +63,7 @@ The constructor initialises the addon and sets the default values:
 * the start/stop syncronization in disabled
 * the start/stop state is stopped
 
-### Methods 1
+### Methods - 1
 These methods don't depend on the application/audio thread setting.
 
 They have thread-safety and realtime-safety properties:
@@ -142,7 +142,6 @@ thread-safe :heavy_check_mark: | realtime-safe :heavy_check_mark:
 ```js
 getNumPeers() : Number
 ```
-
 ```@returns``` The number of peers
 
 
@@ -154,7 +153,6 @@ thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 setNumPeersCallback(numPeersCallback)
 ```
-
 ```@numPeersCallback``` The callback to be executed, takes the new number of peers as Number parameter
 
 
@@ -176,7 +174,6 @@ thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 setTempoCallback(tempoCallback)
 ```
-
 ```@tempoCallback``` The callback to be executed, takes the new tempo as Number parameter
 
 
@@ -212,7 +209,7 @@ removeStartStopCallback()
 ```
 
 
-### Methods 2
+### Methods - 2
 These methods depend on the application/audio thread setting.
 
 In general, modifying the session state should be done in the audio thread for the most 
@@ -224,42 +221,137 @@ an application thread concurrently is not advised and will potentially lead to u
 
 **- getTempo**
 
+Returns the current tempo(bpm)
+```js
+getTempo(cleanResult = false) : Number
+```
+```@cleanResult``` If the data must be rounded before return (false by default)
+
+```@return``` The tempo
 
 
 **- setTempo**
 
+Returns the current tempo(bpm)
+```js
+setTempo(tempo)
+```
+```@tempo``` The new tempo
+
 
 **- getQuantum**
+
+Returns the quantum
+```js
+getQuantum() : Number
+```
+```@return``` The quantum
 
 
 **- setQuantum**
 
+Sets the quantum
+```js
+setQuantum(quantum)
+```
+```quantum``` The new quantum
+
 
 **- getBeat**
+
+Returns the current beat
+```js
+getBeat(cleanResult = false) : Number
+```
+```@cleanResult``` If the data must be rounded before return (false by default)
+
+```@return``` The beat
 
 
 **- requestBeat**
 
+Set the new beat in sync with the session
+```js
+requestBeat(beat: Number)
+```
+```@beat``` The new beat
+
 
 **- forceBeat**
+
+Set the new beat instantly, not in sync with the session
+```js
+forceBeat(beat: Number)
+```
+```@beat``` The new beat
 
 
 **- getPhase**
 
+Returns the phase
+```js
+getPhase(cleanResult = false) : Number
+```
+```@cleanResult``` If the data must be rounded before return (false by default)
+
+```@return``` The phase
+
 
 **- isPlaying**
+
+Says if the session is playing
+```js
+isPlaying() : boolean
+```
+```@return``` True if session is playing, false otherwise
 
 
 **- play**
 
+Makes the session play
+```js
+play()
+```
+
 
 **- stop**
+
+Makes the session stop
+```js
+stop()
+```
 
 
 **- isAudioThread**
 
+Says if this is in audio thread mode
+```js
+isAudioThread() : boolean
+```
+```@return``` True if this is in audio thread mode, false if is in app thread mode
+
 
 **- setAppThread**
 
+Sets App thread mode
+```js
+setAppThread()
+```
+
 
 **- setAudioThread**
+
+Sets Audio thread mode
+```js
+setAudioThread()
+```
+
+## License
+MIT
+
+
+## Issues
+Prease open new issue on  the [GitHub dedicated page](https://github.com/Onni97/abletonlink-node-addon/issues)
+
+## Author
+[Alessandro Oniarti](https://github.com/Onni97)

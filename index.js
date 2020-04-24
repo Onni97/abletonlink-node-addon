@@ -171,7 +171,7 @@ class AbletonLink{
     
     
     /**
-     * Sets the new tempo for the session
+     * Returns the current tempo(bpm)
      * @param {number} tempo The new tempo
      */
     setTempo(tempo) {
