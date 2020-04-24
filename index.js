@@ -1,7 +1,7 @@
 //For a more detailed description of the class and methods visit https://github.com/Onni97/abletonlink-node-addon#readme
 
 
-const AbletonLinkAddon = require('bindings')("AbletonLinkAddon");
+const AbletonLinkAddon = require("bindings")("AbletonLinkAddon");
 
 
 
@@ -91,10 +91,19 @@ class AbletonLink{
      * @param {function} numPeerCallback the callback to be executed
      */
     setNumPeersCallback(numPeerCallback) {
-        if(numPeerCallback != function) {
+        if(numPeerCallback != Function) {
             throw "Parameter must be a function!";
         }
         this._link.setNumPeersCallback(numPeerCallback);
+    }
+    
+    
+    
+    /**
+     * Removes the callback to be executed when the number of peer changes
+     */
+    removeNumPeersCallback() {
+        this._link.setNumPeersCallback(function() {});
     }
     
     
@@ -104,10 +113,19 @@ class AbletonLink{
      * @param {function} tempoCallback the callback to be executed
      */
     setTempoCallback(tempoCallback) {
-        if(tempoCallback != function) {
+        if(tempoCallback != Function) {
             throw "Parameter must be a function!";
         }
         this._link.setTempoCallback(tempoCallback);
+    }
+    
+    
+    
+    /**
+     * Sets the callback to be executed when the tempo changes
+     */
+    removeTempoCallback() {
+        this._link.setTempoCallback(function() {});
     }
     
     
@@ -117,10 +135,19 @@ class AbletonLink{
      * @param {function} startStopCallback the callback to be executed
      */
     setStartStopCallback(startStopCallback) {
-        if(numPeerCallback != function) {
+        if(numPeerCallback != Function) {
             throw "Parameter must be a function!";
         }
         this._link.setStartStopCallback(startStopCallback);
+    }
+    
+    
+    
+    /**
+     * Removes the callback to be executed when the start/stop sync changes
+     */
+    removeStartStopCallback(startStopCallback) {
+        this._link.setStartStopCallback(function() {});
     }
     
     
@@ -295,24 +322,6 @@ class AbletonLink{
     setAudioThread() {
         this._link.setAudioThread();
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //TODO REMOVE CALLBACKS
-    
-    
-    
-    
 }
+
+module.export = AbletonLink;
