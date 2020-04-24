@@ -72,7 +72,8 @@ When a method is marked realtime-safe, it means that it does not block and is ap
 the thread that performs audio IO.
 
 
-##### - isEnabled
+**- isEnabled**
+
 thread-safe :heavy_check_mark: | realtime-safe :heavy_check_mark: 
 ```js
 isEnabled() : boolean
@@ -82,7 +83,8 @@ Says if Link syncronization is enabled
 ```@returns``` true if Link syncronization is enabled, false otherwise
 
 
-##### - enable
+**- enable**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 enable()
@@ -90,7 +92,8 @@ enable()
 Enables Link syncronization
 
 
-##### - disable
+**- disable**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 disable()
@@ -98,7 +101,8 @@ disable()
 Disables Link syncronization
 
 
-##### - isStartStopSyncEnabled
+**- isStartStopSyncEnabled**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 isStartStopSyncEnabled() : boolean
@@ -108,7 +112,8 @@ Says if start/stop sync is enabled
 ```@returns``` true if start/stop sync is enabled, false otherwise
 
 
-##### - enableStartStopSync
+**- enableStartStopSync**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 enableStartStopSync()
@@ -116,7 +121,8 @@ enableStartStopSync()
 Enables start/stop sync
 
 
-##### - disableStartStopSync
+**- disableStartStopSync**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 disableStartStopSync()
@@ -124,7 +130,8 @@ disableStartStopSync()
 Disables start/stop sync
 
 
-##### - getNumPeers
+**- getNumPeers**
+
 thread-safe :heavy_check_mark: | realtime-safe :heavy_check_mark:
 ```js
 getNumPeers() : Number
@@ -134,7 +141,8 @@ Says the number of peers connected (doesn't count who calls the method)
 ```@returns``` The number of peers
 
 
-##### - setNumPeersCallback
+**- setNumPeersCallback**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 setNumPeersCallback(numPeersCallback)
@@ -144,7 +152,8 @@ Sets the callback to be executed when the number of peer changes
 ```@numPeersCallback``` The callback to be executed, takes the new number of peers as Number parameter
 
 
-##### - removeNumPeersCallback
+**- removeNumPeersCallback**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 removeNumPeersCallback()
@@ -152,7 +161,8 @@ removeNumPeersCallback()
 Removes the callback to be executed when the number of peer changes
 
 
-##### - setTempoCallback
+**- setTempoCallback**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 setTempoCallback(tempoCallback)
@@ -162,7 +172,8 @@ Sets the callback to be executed when the tempo changes
 ```@tempoCallback``` The callback to be executed, takes the new tempo as Number parameter
 
 
-##### - removeTempoCallback
+**- removeTempoCallback**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 removeTempoCallback()
@@ -170,7 +181,8 @@ removeTempoCallback()
 Removes the callback to be executed when the tempo changes
 
 
-##### - setStartStopCallback
+**- setStartStopCallback**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 setStartStopCallback(startStopCallback)
@@ -180,7 +192,8 @@ Sets the callback to be executed when the start/stop sync changes
 ```startStopCallback``` The callback to be executed, takes the new start/stop state as boolean paramenter
 
 
-##### - removeStartStopCallback
+**- removeStartStopCallback**
+
 thread-safe :heavy_check_mark: | realtime-safe :x:
 ```js
 removeStartStopCallback()
@@ -198,44 +211,44 @@ doesn't generate audio at all. Modifying the Link session state from both the au
 an application thread concurrently is not advised and will potentially lead to unexpected behavior.
 
 
-##### - getTempo
+**- getTempo**
 
 
 
-##### - setTempo
+**- setTempo**
 
 
-##### - getQuantum
+**- getQuantum**
 
 
-##### - setQuantum
+**- setQuantum**
 
 
-##### - getBeat
+**- getBeat**
 
 
-##### - requestBeat
+**- requestBeat**
 
 
-##### - forceBeat
+**- forceBeat**
 
 
-##### - getPhase
+**- getPhase**
 
 
-##### - isPlaying
+**- isPlaying**
 
 
-##### - play
+**- play**
 
 
-##### - stop
+**- stop**
 
 
-##### - isAudioThread
+**- isAudioThread**
 
 
-##### - setAppThread
+**- setAppThread**
 
 
-##### - setAudioThread
+**- setAudioThread**
