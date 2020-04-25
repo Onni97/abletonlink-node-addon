@@ -1,7 +1,7 @@
 # Ableton Link node addon
 Ableton Link native addon for Node.
 
-Realized using node-addon-api (supported by Node) and always the latst version of Ableton Link
+Realized using node-addon-api (supported by Node) and always the latest version of Ableton Link
 
 
 ## Tested Env
@@ -11,10 +11,13 @@ Realized using node-addon-api (supported by Node) and always the latst version o
 
 ### Node versions tested:
 * 13.13.0
+* 12.0.0
+* 10.16.0
+* All versions < 10.16.0 **doesn't work**
 
 
 ## Requisites
-To run this project you need the **G++** compiler (4.8 or above)  and **Python** (v2.7, v3.5, v3.6, v3.7, or v3.8)
+To run this project you need the **G++** compiler (4.8 or above), **Python** (v2.7, v3.5, v3.6, v3.7, or v3.8) and **Node** (10.16.0 or above)
 
 ### Linux
 Run this command to install requisites:
@@ -36,6 +39,10 @@ npm install windows-buil-tools
 
 
 ## Install
+The installation will download all the dependencies and also compile the AbletonLink source code for the current enviroment.
+
+During the installation the program you will see all the logs of the compilation. The logs depends on your compiler and version.
+
 ###GitHub
 Run the script:
 ```
@@ -52,7 +59,6 @@ npm install abletonlink-addon
 ```
 or add the dependency to your ```package.json```
 
-The ```install``` script will install the dependencies and also compile the AbletonLink source code for the current enviroment
 
 ###Example
 To run the included example you need [readline-sync](https://github.com/anseki/readline-sync). Install it with:
