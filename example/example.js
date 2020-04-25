@@ -1,19 +1,11 @@
-var readlineSync = require('readline-sync');
-
-
-//const AbletonLinkAddon = require('bindings')("AbletonLinkAddon");
-//var link = new AbletonLinkAddon.MyLink();
+const readlineSync = require('readline-sync');
 
 const AbletonLink = require("../index.js");
 link = new AbletonLink();
 
 
-
-
-
-
 while(true) {
-    var selection = readlineSync.question("What to do? ( isEnabled | enable | disable | isStartStopSyncEnabled | enableStartStopSync | disableStartStopSync | getNumPeers | setNumPeersCallback | setTempoCallback | setStartStopCallback | getTempo | setTempo | getQuantum | setQuantum | getBeat | requestBeat | forceBeat | getPhase | isPlaying | play | stop | isAudioThread | setAppThread | setAudioThread )\n>");
+    var selection = readlineSync.question("\nWhat to do? ( isEnabled | enable | disable | isStartStopSyncEnabled | enableStartStopSync | disableStartStopSync | getNumPeers | getTempo | getTempoClean | setTempo | getQuantum | setQuantum | getBeat | getBeatClean | requestBeat | forceBeat | getPhase | getPhaseClean | isPlaying | play | stop | isAudioThread | setAppThread | setAudioThread )\n>");
     
     
     switch(selection) {
@@ -38,17 +30,11 @@ while(true) {
         case "getNumPeers":
             console.log(link.getNumPeers());
             break;
-        case "setNumPeersCallback":
-            console.log("TODO");
-            break;
-        case "setTempoCallback":
-            console.log("TODO");
-            break;
-        case "setStartStopCallback":
-            console.log("TODO");
-            break;
         case "getTempo":
             console.log(link.getTempo());
+            break;
+        case "getTempoClean":
+            console.log(link.getTempo(true));
             break;
         case "setTempo":
             var tempo = readlineSync.question("Tempo: ");
@@ -58,11 +44,14 @@ while(true) {
             console.log(link.getQuantum());
             break;
         case "setQuantum":
-            var tempo = readlineSync.question("Quantum: ");
+            var quantum = readlineSync.question("Quantum: ");
             link.setQuantum(parseInt(quantum));
             break;
         case "getBeat":
             console.log(link.getBeat());
+            break;
+        case "getBeatClean":
+            console.log(link.getBeat(true));
             break;
         case "requestBeat":
             var beat = readlineSync.question("Beat: ");
@@ -74,6 +63,9 @@ while(true) {
             break;
         case "getPhase":
             console.log(link.getPhase());
+            break;
+        case "getPhaseClean":
+            console.log(link.getPhase(true));
             break;
         case "isPlaying":
             console.log(link.isPlaying());
@@ -93,8 +85,10 @@ while(true) {
         case "setAudioThread":
             link.setAudioThread();
             break;
+        default:
+            console.log("Command not found")
     }
-    console.log("\n\n\n");
+    console.log("\n");
 }
 
 

@@ -43,7 +43,7 @@ The installation will download all the dependencies and also compile the Ableton
 
 During the installation the program you will see all the logs of the compilation. The logs depends on your compiler and version.
 
-###GitHub
+### GitHub
 Run the script:
 ```
 git clone --recursive https://github.com/Onni97/abletonlink-node-addon
@@ -52,7 +52,7 @@ npm install
 ```
 **Important:** --recursive is required to download the submodules
 
-###npm
+### npm
 The package is also avaiable in npm, so you can simply execute:
 ```
 npm install abletonlink-addon
@@ -60,7 +60,7 @@ npm install abletonlink-addon
 or add the dependency to your ```package.json```
 
 
-###Example
+### Example
 To run the included example you need [readline-sync](https://github.com/anseki/readline-sync). Install it with:
 ```
 npm install readline-sync
@@ -249,7 +249,7 @@ Returns the current tempo(bpm)
 ```js
 getTempo(cleanResult = false) : number
 ```
-```@cleanResult``` If the data must be rounded before return (false by default)
+```@cleanResult``` If the data must be rounded to 2 decimals before return (false by default)
 
 ```@return``` The tempo
 
@@ -375,7 +375,8 @@ MIT
 
 
 ## Issues
-Prease open new issue on  the [GitHub dedicated page](https://github.com/Onni97/abletonlink-node-addon/issues)
+Prease open new issues on  the [GitHub dedicated page](https://github.com/Onni97/abletonlink-node-addon/issues)
+
 
 ## Author
-[Alessandro Oniarti](https://github.com/Onni97)
+Me, [Alessandro Oniarti](https://github.com/Onni97)

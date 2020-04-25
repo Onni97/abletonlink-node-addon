@@ -162,9 +162,9 @@ class AbletonLink{
             throw "Parameter must be a boolean!";
         }
         if(cleanResult) {
-            return this._link.getTempo();
+            return Math.round(this._link.getTempo()*100)/100;
         } else {
-            return Math.round(this._link.getTempo());
+            return this._link.getTempo();
         }
     }
     
