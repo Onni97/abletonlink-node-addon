@@ -13,7 +13,7 @@ Realized using node-addon-api (supported by Node) and always the latest version 
 * 13.13.0
 * 12.0.0
 * 10.16.0
-* All versions < 10.16.0 **doesn't work**
+* All versions < 10.16.0 **doesn't** work
 
 
 ## Requisites
@@ -28,7 +28,7 @@ sudo apt-get install g++ python
 ### Windows
 You need the windows-buil-tools that containt boot G++ and Python, to install run:
 ```
-npm install windows-buil-tools
+npm install -g windows-buil-tools
 ```
 
 
