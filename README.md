@@ -1,7 +1,7 @@
 # Ableton Link node addon
 Ableton Link native addon for Node.
 
-Realized using node-addon-api (supported by Node) and always the latest version of Ableton Link
+Realized using node-addon-api (supported by Node) and always the latest version of Ableton Link.
 
 
 ## Tested Env
@@ -370,12 +370,17 @@ Sets Audio thread mode
 setAudioThread()
 ```
 
+
+## Examples
+To see another usage example you can go [here](https://github.com/Onni97/AbletonLinkOnNodeServer).
+
+
 ## License
 MIT
 
 
 ## Issues
-Prease open new issues on  the [GitHub dedicated page](https://github.com/Onni97/abletonlink-node-addon/issues)
+Please open new issues on  the [GitHub dedicated page](https://github.com/Onni97/abletonlink-node-addon/issues).
 
 
 ## Author
