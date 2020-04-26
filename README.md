@@ -60,8 +60,8 @@ npm install abletonlink-addon
 or add the dependency to your ```package.json```
 
 
-### Example
-To run the included example you need [readline-sync](https://github.com/anseki/readline-sync). Install it with:
+### Examples
+To run the included examples you need [readline-sync](https://github.com/anseki/readline-sync). Install it with:
 ```
 npm install readline-sync
 ```
@@ -372,7 +372,9 @@ setAudioThread()
 
 
 ## Examples
-To see another usage example you can go [here](https://github.com/Onni97/AbletonLinkOnNodeServer).
+There are 2 simple examples in the ```example``` directory.
+
+To see an example of web application using this addon you can go [here](https://github.com/Onni97/AbletonLinkOnNodeServer).
 
 
 ## License
