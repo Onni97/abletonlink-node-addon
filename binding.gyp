@@ -16,7 +16,13 @@
         'defines': [ 'NAPI_DISABLE_CPP_EXCEPTIONS' ],
         'conditions': [
             ['OS=="mac"', {
-                'defines': ['LINK_PLATFORM_MACOSX=1']
+                'defines': ['LINK_PLATFORM_MACOSX=1'],
+                'defines!': [ 'NAPI_DISABLE_CPP_EXCEPTIONS' ],
+                'xcode_settings': {
+					'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
+					'CLANG_CXX_LIBRARY': 'libc++',
+					'CLANG_CXX_LANGUAGE_STANDARD': 'c++11'
+				}
             }],
             ['OS=="linux"', {
                 'defines': ['LINK_PLATFORM_LINUX=1']
