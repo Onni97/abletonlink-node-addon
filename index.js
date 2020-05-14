@@ -216,7 +216,7 @@ class AbletonLink{
             throw "Parameter must be a boolean!";
         }
         if(cleanResult) {
-            return Math.round(this._link.getBeat());
+            return Math.floor(this._link.getBeat());
         } else {
             return this._link.getBeat();
         }
@@ -260,7 +260,7 @@ class AbletonLink{
             throw "Parameter must be a boolean!";
         }
         if(cleanResult) {
-            return Math.round(this._link.getPhase());
+            return Math.floor(this._link.getPhase());
         } else {
             return this._link.getPhase();
         }
