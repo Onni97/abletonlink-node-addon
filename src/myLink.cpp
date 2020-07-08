@@ -1,44 +1,44 @@
-#include "webAudioLink.h"
+#include "myLink.h"
 
-Napi::FunctionReference webAudioLink::constructor;
+Napi::FunctionReference MyLink::constructor;
 
-Napi::Object webAudioLink::Init(Napi::Env env, Napi::Object exports) {
+Napi::Object MyLink::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
   Napi::Function func =
       DefineClass(env,
-                  "webAudioLink",
+                  "MyLink",
                   {
-                    InstanceMethod("isEnabled", &webAudioLink::isEnabled),
-                    InstanceMethod("enable", &webAudioLink::enable),
-                    InstanceMethod("disable", &webAudioLink::disable),
-                    InstanceMethod("isStartStopSyncEnabled", &webAudioLink::isStartStopSyncEnabled),
-                    InstanceMethod("enableStartStopSync", &webAudioLink::enableStartStopSync),
-                    InstanceMethod("disableStartStopSync", &webAudioLink::disableStartStopSync),
-                    InstanceMethod("isPlaying", &webAudioLink::isPlaying),
-                    InstanceMethod("play", &webAudioLink::play),
-                    InstanceMethod("stop", &webAudioLink::stop),
-                    InstanceMethod("getNumPeers", &webAudioLink::getNumPeers),
-                    InstanceMethod("setNumPeersCallback", &webAudioLink::setNumPeersCallback),
-                    InstanceMethod("setTempoCallback", &webAudioLink::setTempoCallback),
-                    InstanceMethod("setStartStopCallback", &webAudioLink::setStartStopCallback),
-                    InstanceMethod("getTempo", &webAudioLink::getTempo),
-                    InstanceMethod("setTempo", &webAudioLink::setTempo),
-                    InstanceMethod("getQuantum", &webAudioLink::getQuantum),
-                    InstanceMethod("setQuantum", &webAudioLink::setQuantum),
-                    InstanceMethod("getBeat", &webAudioLink::getBeat),
-                    InstanceMethod("requestBeat", &webAudioLink::requestBeat),
-                    InstanceMethod("forceBeat", &webAudioLink::forceBeat),
-                    InstanceMethod("getPhase", &webAudioLink::getPhase),
-                    InstanceMethod("isAudioThread", &webAudioLink::isAudioThread),
-                    InstanceMethod("setAppThread", &webAudioLink::setAppThread),
-                    InstanceMethod("setAudioThread", &webAudioLink::setAudioThread),
+                    InstanceMethod("isEnabled", &MyLink::isEnabled),
+                    InstanceMethod("enable", &MyLink::enable),
+                    InstanceMethod("disable", &MyLink::disable),
+                    InstanceMethod("isStartStopSyncEnabled", &MyLink::isStartStopSyncEnabled),
+                    InstanceMethod("enableStartStopSync", &MyLink::enableStartStopSync),
+                    InstanceMethod("disableStartStopSync", &MyLink::disableStartStopSync),
+                    InstanceMethod("isPlaying", &MyLink::isPlaying),
+                    InstanceMethod("play", &MyLink::play),
+                    InstanceMethod("stop", &MyLink::stop),
+                    InstanceMethod("getNumPeers", &MyLink::getNumPeers),
+                    InstanceMethod("setNumPeersCallback", &MyLink::setNumPeersCallback),
+                    InstanceMethod("setTempoCallback", &MyLink::setTempoCallback),
+                    InstanceMethod("setStartStopCallback", &MyLink::setStartStopCallback),
+                    InstanceMethod("getTempo", &MyLink::getTempo),
+                    InstanceMethod("setTempo", &MyLink::setTempo),
+                    InstanceMethod("getQuantum", &MyLink::getQuantum),
+                    InstanceMethod("setQuantum", &MyLink::setQuantum),
+                    InstanceMethod("getBeat", &MyLink::getBeat),
+                    InstanceMethod("requestBeat", &MyLink::requestBeat),
+                    InstanceMethod("forceBeat", &MyLink::forceBeat),
+                    InstanceMethod("getPhase", &MyLink::getPhase),
+                    InstanceMethod("isAudioThread", &MyLink::isAudioThread),
+                    InstanceMethod("setAppThread", &MyLink::setAppThread),
+                    InstanceMethod("setAudioThread", &MyLink::setAudioThread),
                   });
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
 
-  exports.Set("webAudioLink", func);
+  exports.Set("MyLink", func);
   return exports;
 }
 
@@ -47,7 +47,7 @@ Napi::Object webAudioLink::Init(Napi::Env env, Napi::Object exports) {
 
 
 //CONSTRUCTOR
-webAudioLink::webAudioLink(const Napi::CallbackInfo& info): Napi::ObjectWrap<webAudioLink>(info) {
+MyLink::MyLink(const Napi::CallbackInfo& info): Napi::ObjectWrap<MyLink>(info) {
     Napi::Env env = info.Env();
     Napi::HandleScope scope(env);
     
@@ -63,16 +63,16 @@ webAudioLink::webAudioLink(const Napi::CallbackInfo& info): Napi::ObjectWrap<web
 //METHODS
 
 //
-Napi::Value webAudioLink::isEnabled(const Napi::CallbackInfo& info) {
+Napi::Value MyLink::isEnabled(const Napi::CallbackInfo& info) {
     bool res = container.link.isEnabled();
     return Napi::Boolean::New(info.Env(), res);
 }
 
-void webAudioLink::enable(const Napi::CallbackInfo& info) {
+void MyLink::enable(const Napi::CallbackInfo& info) {
     container.link.enable(true);
 }
 
-void webAudioLink::disable(const Napi::CallbackInfo& info) {
+void MyLink::disable(const Napi::CallbackInfo& info) {
     container.link.enable(false);
 }
 
@@ -80,16 +80,16 @@ void webAudioLink::disable(const Napi::CallbackInfo& info) {
 
 
 
-Napi::Value webAudioLink::isStartStopSyncEnabled(const Napi::CallbackInfo& info) {
+Napi::Value MyLink::isStartStopSyncEnabled(const Napi::CallbackInfo& info) {
     bool res = container.link.isStartStopSyncEnabled();
     return Napi::Boolean::New(info.Env(), res);
 }
 
-void webAudioLink::enableStartStopSync(const Napi::CallbackInfo& info) {
+void MyLink::enableStartStopSync(const Napi::CallbackInfo& info) {
     container.link.enableStartStopSync(true);
 }
 
-void webAudioLink::disableStartStopSync(const Napi::CallbackInfo& info) {
+void MyLink::disableStartStopSync(const Napi::CallbackInfo& info) {
     container.link.enableStartStopSync(false);
 }
 
@@ -97,7 +97,7 @@ void webAudioLink::disableStartStopSync(const Napi::CallbackInfo& info) {
 
 
 
-Napi::Value webAudioLink::getNumPeers(const Napi::CallbackInfo& info) {
+Napi::Value MyLink::getNumPeers(const Napi::CallbackInfo& info) {
     int res = container.link.numPeers();
     return Napi::Number::New(info.Env(), res);
 }
@@ -106,7 +106,7 @@ Napi::Value webAudioLink::getNumPeers(const Napi::CallbackInfo& info) {
 
 
 
-void webAudioLink::setNumPeersCallback(const Napi::CallbackInfo& info) {
+void MyLink::setNumPeersCallback(const Napi::CallbackInfo& info) {
     //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
     if (info.Length() < 1) {
@@ -129,7 +129,7 @@ void webAudioLink::setNumPeersCallback(const Napi::CallbackInfo& info) {
     });
 }
 
-void webAudioLink::setTempoCallback(const Napi::CallbackInfo& info) {
+void MyLink::setTempoCallback(const Napi::CallbackInfo& info) {
     //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
     if (info.Length() < 1) {
@@ -152,7 +152,7 @@ void webAudioLink::setTempoCallback(const Napi::CallbackInfo& info) {
     });
 }
 
-void webAudioLink::setStartStopCallback(const Napi::CallbackInfo& info) {
+void MyLink::setStartStopCallback(const Napi::CallbackInfo& info) {
     //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
     if (info.Length() < 1) {
@@ -179,7 +179,7 @@ void webAudioLink::setStartStopCallback(const Napi::CallbackInfo& info) {
 
 
 
-Napi::Value webAudioLink::getTempo(const Napi::CallbackInfo& info) {
+Napi::Value MyLink::getTempo(const Napi::CallbackInfo& info) {
     double tempo;
     if(this->useAppThreadFunctions) {
         tempo = container.link.captureAppSessionState().tempo();
@@ -189,7 +189,7 @@ Napi::Value webAudioLink::getTempo(const Napi::CallbackInfo& info) {
     return Napi::Number::New(info.Env(), tempo);
 }
 
-void webAudioLink::setTempo(const Napi::CallbackInfo& info) {
+void MyLink::setTempo(const Napi::CallbackInfo& info) {
     //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
     if (info.Length() < 1) {
@@ -220,7 +220,7 @@ void webAudioLink::setTempo(const Napi::CallbackInfo& info) {
 
 
 
-Napi::Value webAudioLink::getBeat(const Napi::CallbackInfo& info) {
+Napi::Value MyLink::getBeat(const Napi::CallbackInfo& info) {
     double beat;
     if(this->useAppThreadFunctions) {
         std::chrono::microseconds time = container.link.clock().micros();
@@ -232,7 +232,7 @@ Napi::Value webAudioLink::getBeat(const Napi::CallbackInfo& info) {
     return Napi::Number::New(info.Env(), beat);
 }
 
-void webAudioLink::requestBeat(const Napi::CallbackInfo& info) {
+void MyLink::requestBeat(const Napi::CallbackInfo& info) {
     //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
     if (info.Length() < 1) {
@@ -259,7 +259,7 @@ void webAudioLink::requestBeat(const Napi::CallbackInfo& info) {
     }
 }
 
-void webAudioLink::forceBeat(const Napi::CallbackInfo& info) {
+void MyLink::forceBeat(const Napi::CallbackInfo& info) {
     //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
     if (info.Length() < 1) {
@@ -290,7 +290,7 @@ void webAudioLink::forceBeat(const Napi::CallbackInfo& info) {
 
 
 
-Napi::Value webAudioLink::getPhase(const Napi::CallbackInfo& info) {
+Napi::Value MyLink::getPhase(const Napi::CallbackInfo& info) {
     double phase;
     if(this->useAppThreadFunctions) {
         std::chrono::microseconds time = container.link.clock().micros();
@@ -306,7 +306,7 @@ Napi::Value webAudioLink::getPhase(const Napi::CallbackInfo& info) {
 
 
 
-Napi::Value webAudioLink::isPlaying(const Napi::CallbackInfo& info) {
+Napi::Value MyLink::isPlaying(const Napi::CallbackInfo& info) {
     bool isPlaying;
     if(this->useAppThreadFunctions) {
         isPlaying = container.link.captureAppSessionState().isPlaying();
@@ -316,7 +316,7 @@ Napi::Value webAudioLink::isPlaying(const Napi::CallbackInfo& info) {
     return Napi::Boolean::New(info.Env(), isPlaying);
 }
 
-void webAudioLink::play(const Napi::CallbackInfo& info) {
+void MyLink::play(const Napi::CallbackInfo& info) {
     if(this->useAppThreadFunctions) {
         std::chrono::microseconds time = container.link.clock().micros();
         ableton::Link::SessionState newState = container.link.captureAppSessionState();
@@ -330,7 +330,7 @@ void webAudioLink::play(const Napi::CallbackInfo& info) {
     }
 }
 
-void webAudioLink::stop(const Napi::CallbackInfo& info) {
+void MyLink::stop(const Napi::CallbackInfo& info) {
     if(this->useAppThreadFunctions) {
         std::chrono::microseconds time = container.link.clock().micros();
         ableton::Link::SessionState newState = container.link.captureAppSessionState();
@@ -348,15 +348,15 @@ void webAudioLink::stop(const Napi::CallbackInfo& info) {
 
 
 
-Napi::Value webAudioLink::isAudioThread(const Napi::CallbackInfo& info) {
+Napi::Value MyLink::isAudioThread(const Napi::CallbackInfo& info) {
     return Napi::Boolean::New(info.Env(), !(this->useAppThreadFunctions));
 }
 
-void webAudioLink::setAppThread(const Napi::CallbackInfo& info) {
+void MyLink::setAppThread(const Napi::CallbackInfo& info) {
     this->useAppThreadFunctions = true;
 }
 
-void webAudioLink::setAudioThread(const Napi::CallbackInfo& info) {
+void MyLink::setAudioThread(const Napi::CallbackInfo& info) {
     this->useAppThreadFunctions = false;
 }
 
@@ -364,11 +364,11 @@ void webAudioLink::setAudioThread(const Napi::CallbackInfo& info) {
 
 
 
-Napi::Value webAudioLink::getQuantum(const Napi::CallbackInfo& info) {
+Napi::Value MyLink::getQuantum(const Napi::CallbackInfo& info) {
     return Napi::Number::New(info.Env(), this->quantum);
 }
 
-void webAudioLink::setQuantum(const Napi::CallbackInfo& info) {
+void MyLink::setQuantum(const Napi::CallbackInfo& info) {
     //throw exception in case of wrong parameter
     Napi::Env env = info.Env();
     

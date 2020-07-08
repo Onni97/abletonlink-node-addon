@@ -5,7 +5,7 @@
         "cflags!": [ "-fno-exceptions" ],
         "cflags_cc!": [ "-fno-exceptions" ],
         "sources": [
-            "./src/webAudioLink.cpp",
+            "./src/myLink.cpp",
             "./src/index.cpp"
         ],
         "include_dirs": [

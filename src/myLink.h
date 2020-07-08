@@ -11,10 +11,10 @@
 #include <thread>
 
 
-class webAudioLink : public Napi::ObjectWrap<webAudioLink> {
+class MyLink : public Napi::ObjectWrap<MyLink> {
     public:
     static Napi::Object Init(Napi::Env env, Napi::Object exports);
-    webAudioLink(const Napi::CallbackInfo& info);
+    MyLink(const Napi::CallbackInfo& info);
 
     private:
     static Napi::FunctionReference constructor;

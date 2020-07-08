@@ -1,8 +1,8 @@
 #include <napi.h>
-#include "webAudioLink.h"
+#include "myLink.h"
 
 Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
-  return webAudioLink::Init(env, exports);
+  return MyLink::Init(env, exports);
 }
 
 NODE_API_MODULE(AbletonLink, InitAll);

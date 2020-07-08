@@ -11,7 +11,7 @@ class AbletonLink{
      * Creates an instance of the addon and save it locally (and private)
      */
     constructor() {
-        this._link = new AbletonLinkAddon.webAudioLink(120);
+        this._link = new AbletonLinkAddon.MyLink(120);
         //default values
         //tempo = 120
         //quantum = 4
